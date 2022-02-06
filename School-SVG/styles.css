@@ -138,11 +138,6 @@ p {
     width: 125vw;
   }
 }
-main {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-}
 
 /* Nav */
 
@@ -239,7 +234,7 @@ main {
 @keyframes slide-right {
 
   from {
-    margin-left: 0px;
+    margin-left: 1px;
   }
 
   100% {
