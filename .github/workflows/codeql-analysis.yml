@@ -65,13 +65,13 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-    version: 2
-    updates:
+      version: 2
+      updates:
     - package-ecosystem: "github-actions"
       directory: "/"
       schedule:
       interval: "daily"
-
+      
     - package-ecosystem: "npm"
       directory: "/app"
       schedule:
@@ -96,30 +96,31 @@ jobs:
       allow:
       dependency-type: "all"
       include: "scope"
+     
     - package-ecosystem: "pip"
-      directory: "/"
-      schedule:
-      interval: "daily"
-      allow:
-      dependency-name: "django*"
-      dependency-type: "direct"
-      - "production"
-      versioning-strategy: lockfile-only
-      target-branch: "develop"
-      labels:
-      - "pip dependencies"
-      reviewers:
-      - "octocat"
-      - "my-username"
-      - "my-org/python-team"
-      open-pull-requests-limit: 10
-      commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
-      include: "scope"
+    directory: "/"
+    schedule:
+    interval: "daily"
+    allow:
+    dependency-name: "django*"
+    dependency-type: "direct"
+--- "production":
+    versioning-strategy: lockfile-only
+    target-branch: "develop"
+    labels:
+    - "pip dependencies"
+    reviewers:
+    - "octocat"
+    - "my-username"
+    - "my-org/python-team"
+    open-pull-requests-limit: 10
+    commit-message:
+    prefix: "pip prod"
+    prefix-development: "pip dev"
+    include: "scope"
       
     - package-ecosystem: "gomod"
-      vendor: true
-      directory: "/"
-      schedule:
-      interval: "weekly"
+    vendor: true
+    directory: "/"
+    schedule:
+    interval: "weekly"
